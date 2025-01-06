@@ -1,12 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); 
+const routes = require ('./routes/api');
 require('dotenv').config(); 
 
 const app = express();
-app.use(express.json());
 
-const MONGO_URI = process.env.MONGODB_URI; 
-const PORT = process.env.PORT_NUMBER || 5001; 
+app.use(cors()); 
+app.use(express.json()); 
+app.use(routes);
+
+
+const MONGO_URI = process.env.MONGODB_URI;
+const PORT = process.env.PORT_NUMBER || 3000;
 
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
