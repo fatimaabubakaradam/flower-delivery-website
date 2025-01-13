@@ -101,6 +101,7 @@ cd <flower-delivery-website>
   The server is configured to run on the port specified in the .env file or defaults to port 5000 if not set. MongoDB Atlas is used for database management, with connection details stored securely in environment variables.
 
   **API Endpoints**
+  **http://localhost:3000/api/flowers**
   - **GET /flowers - Fetch all flowers.** 
 - **POST /flowers - Add a new flower.** 
 - **DELETE /flowers/:id - Delete a flower by its ID** 
@@ -124,6 +125,7 @@ If you have any questions or feedback, feel free to contact:
 **GitHub:**  Flower delivery Website Repository
 feature-1
 **website:** https://react-app-57ct.onrender.com/
+**http://localhost:3000/api/flowers**
 
 
 
