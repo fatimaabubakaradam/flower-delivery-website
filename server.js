@@ -9,9 +9,6 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(cors());
-app.use(express.json());
-app.use('/uploads', express.static('uploads')); // Serve images from uploads folder
 
 // Root Route
 app.get('/', (req, res) => {
