@@ -1,30 +1,34 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); 
-const routes = require ('./routes/api');
-require('dotenv').config(); 
+const cors = require('cors');
+const dotenv = require('dotenv');
+const flowerRoutes = require('./routes/flowerRoutes');
+
+dotenv.config();
 
 const app = express();
 
-app.use(cors()); 
-app.use(express.json()); 
-app.use(routes);
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use('/uploads', express.static('uploads')); // Serve images from uploads folder
 
+// Root Route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Flower App API!');
+});
 
-const MONGO_URI = process.env.MONGODB_URI;
-const PORT = process.env.PORT_NUMBER || 3000;
+// Routes
+app.use('/api/flowers', flowerRoutes);
 
+// MongoDB Connection
 mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    console.log('Connected to MongoDB');
+    app.listen(process.env.PORT_NUMBER, () => {
+      console.log(`Server running on port ${process.env.PORT_NUMBER}`);
     });
   })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-  });
-
-app.get('/', (req, res) => {
-  res.send('Flower website!');
-});
+  .catch((error) => console.error('MongoDB connection error:', error));
+//   http://localhost:3000/api/flowers

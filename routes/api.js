@@ -1,20 +1,26 @@
-const express = require('expess');
-const router = express.Router();
-Router.get('/flower', function(req, res)
-{
-    res.send({type: 'GET'});
-} );
-Router.post('/flower', function(req, res)
-{
-    res.send({type: 'POST'});
-} );
-Router.put('/flower/:id', function(req, res)
-{
-    res.send({type: 'PUT'});
-} );
-Router.delete('/flower/:id', function(req, res)
-{
-    res.send({type: 'DELETE'});
-} );
+// const express = require('express');
+// const router = express.Router();
+// const {
+//     getAllFlowers,
+//     getFlowerById,
+//     createFlower,
+//     updateFlower,
+//     deleteFlower,
+// } = require('../controllers/flowerController');
 
-module.exports = router
+// // Route to get all flowers
+// router.get('/', getAllFlowers);
+
+// // Route to get a single flower by ID
+// router.get('/:id', getFlowerById);
+
+// // Route to create a new flower
+// router.post('/', createFlower);
+
+// // Route to update an existing flower by ID
+// router.put('/:id', updateFlower);
+
+// // Route to delete a flower by ID
+// router.delete('/:id', deleteFlower);
+
+// module.exports = router;

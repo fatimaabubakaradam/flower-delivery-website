@@ -1,62 +1,50 @@
-const FlowerModel = require('../models/FlowerModel');
-const upload = require('../middlewares/multer'); // Multer middleware
+const Flower = require('../models/FlowerModels');
+
 
 // Get all flowers
-const getAllFlowers = async (req, res) => {
+const getFlowers = async (req, res) => {
   try {
-    res.json(await FlowerModel.find());
-  } catch {
-    res.status(500).json({ error: 'Error fetching flowers' });
+    const flowers = await Flower.find();
+    res.status(200).json(flowers);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch flowers' });
   }
 };
 
-// Get flower by ID
-const getFlowerById = async (req, res) => {
-  try {
-    const flower = await FlowerModel.findById(req.params.id);
-    flower ? res.json(flower) : res.status(404).json({ error: 'Not found' });
-  } catch {
-    res.status(500).json({ error: 'Error fetching flower' });
-  }
-};
-
-// Create a new flower with image upload
+// Create a new flower
 const createFlower = async (req, res) => {
-  // Use Multer middleware for image upload
-  upload.single('image')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
+    const { name, description, price, category, image } = req.body;
+  
+    if (!name || !description || !price || !category || !image) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
-
+  
     try {
-      const { name, description, category, price } = req.body;
-      const flowerImage = req.file ? req.file.path : ''; // Save image path to the database
-      const flower = new FlowerModel({ name, description, category, price, image: flowerImage });
-      res.status(201).json(await flower.save());
-    } catch {
-      res.status(500).json({ error: 'Error creating flower' });
+      const newFlower = new Flower({ name, description, price, category, image });
+      await newFlower.save();
+      res.status(201).json(newFlower);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to create flower' });
     }
-  });
-};
-
-// Update flower
-const updateFlower = async (req, res) => {
-  try {
-    const flower = await FlowerModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    flower ? res.json(flower) : res.status(404).json({ error: 'Not found' });
-  } catch {
-    res.status(500).json({ error: 'Error updating flower' });
-  }
-};
-
-// Delete flower
+  };
+  
+// Delete a flower
 const deleteFlower = async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const flower = await FlowerModel.findByIdAndDelete(req.params.id);
-    flower ? res.json({ message: 'Deleted' }) : res.status(404).json({ error: 'Not found' });
-  } catch {
-    res.status(500).json({ error: 'Error deleting flower' });
+    const flower = await Flower.findByIdAndDelete(id);
+    if (!flower) {
+      return res.status(404).json({ error: 'Flower not found' });
+    }
+    res.status(200).json({ message: 'Flower deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete flower' });
   }
 };
 
-module.exports = { getAllFlowers, getFlowerById, createFlower, updateFlower, deleteFlower };
+module.exports = {
+  getFlowers,
+  createFlower,
+  deleteFlower,
+};

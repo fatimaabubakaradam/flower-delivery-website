@@ -20,5 +20,11 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["package.json"],
+      "url": "./package-schema.json"
+    }
+  ]
 }

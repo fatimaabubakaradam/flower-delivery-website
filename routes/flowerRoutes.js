@@ -1,19 +1,26 @@
-
 const express = require('express');
 const router = express.Router();
 const {
-    getAllFlowers,
-    getFlowerById,
-    createFlower,
-    updateFlower,
-    deleteFlower
+  getFlowers,
+  createFlower,
+  deleteFlower,
 } = require('../controllers/flowerController');
+const multer = require('multer');
 
 
-    router.get('/', getAllFlowers);
-    router.get('/:id', getFlowerById);
-    router.post('/', createFlower);
-    router.put('/:id', updateFlower);
-    router.delete('/:id', deleteFlower);
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  },
+});
+const upload = multer({ storage });
+
+// Routes
+router.get('/', getFlowers);
+router.post('/', upload.single('image'), createFlower);
+router.delete('/:id', deleteFlower);
 
 module.exports = router;
