@@ -106,6 +106,8 @@ cd <flower-delivery-website>
 - **POST /flowers - Add a new flower.** 
 - **DELETE /flowers/:id - Delete a flower by its ID** 
 - **GET /flowers/:id - Get a specific flower by ID.**
+ - **POST /User/Sign up - Sign up a new user.**
+  - **POST /User/Login- Logged in.**
 
 -   **Notes**
 -   This application is designed as the backend of a flower delivery service.
