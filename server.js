@@ -2,26 +2,26 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const flowerRoutes = require('./routes/flowerRoutes');
+const flowerRoutes = require('./routes/flowerRoutes'); 
+const userRoutes = require('./routes/userRoutes'); 
 
 dotenv.config();
 
 const app = express();
 
-// Middlewares
+
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads')); // Serve images from uploads folder
+app.use('/uploads', express.static('uploads')); 
 
-// Root Route
-app.get('/', (req, res) => {
-  res.send('Welcome to the Flower App API!');
-});
 
-// Routes
-app.use('/api/flowers', flowerRoutes);
+app.get('/', (req, res) => res.send('Welcome to the Flower App API!'));
 
-// MongoDB Connection
+
+app.use('/api/flowers', flowerRoutes); 
+app.use('/api/users', userRoutes);     
+
+
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -31,4 +31,5 @@ mongoose
     });
   })
   .catch((error) => console.error('MongoDB connection error:', error));
-//   http://localhost:3000/api/flowers
+
+

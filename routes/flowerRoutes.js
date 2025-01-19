@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const {
   getFlowers,
+  getFlowerById, 
   createFlower,
   deleteFlower,
 } = require('../controllers/flowerController');
 const multer = require('multer');
-
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,8 +18,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Routes
 router.get('/', getFlowers);
+router.get('/:id', getFlowerById); 
 router.post('/', upload.single('image'), createFlower);
 router.delete('/:id', deleteFlower);
 

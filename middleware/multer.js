@@ -6,9 +6,9 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // Add a timestamp to ensure unique filenames
+    cb(null, Date.now() + '-' + file.originalname); 
   },
 });
 
-// Multer Middleware
+
 const upload = multer({ storage });
