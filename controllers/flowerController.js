@@ -21,7 +21,6 @@ const getFlowerById = async (req, res) => {
     }
     res.status(200).json(flower);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch flower' });
   }
 };
 
