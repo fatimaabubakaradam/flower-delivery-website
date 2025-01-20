@@ -112,6 +112,12 @@ cd <flower-delivery-website>
 -   This application is designed as the backend of a flower delivery service.
     Multer is used for image handling, and images are stored locally in the uploads folder.
     CORS middleware is used to ensure that the API can be accessed from different origins.
+
+
+   **API ENDPOINT**
+-  http://localhost:3000/api/flowers
+ -  http://localhost:3000/api/users/signup
+ 
      
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
@@ -130,6 +136,8 @@ feature-1
 **website:** https://flower-delivery-website.onrender.com/api/flowers
 
 **watch my loom video** https://www.loom.com/share/b4f5b687e2314e308de1a2f2eeb40c14
+
+
 
 
 
