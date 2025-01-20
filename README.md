@@ -101,18 +101,23 @@ cd <flower-delivery-website>
   The server is configured to run on the port specified in the .env file or defaults to port 5000 if not set. MongoDB Atlas is used for database management, with connection details stored securely in environment variables.
 
   **API Endpoints**
-  **http://localhost:3000/api/flowers**
   - **GET /flowers - Fetch all flowers.** 
 - **POST /flowers - Add a new flower.** 
 - **DELETE /flowers/:id - Delete a flower by its ID** 
 - **GET /flowers/:id - Get a specific flower by ID.**
- - **POST /User/Sign up - Sign up a new user.**
-  - **POST /User/Login- Logged in.**
+- **POST /User/Sign up - Sign up a new user.**
+- - **POST /User/Login- Logged in.**
 
 -   **Notes**
 -   This application is designed as the backend of a flower delivery service.
     Multer is used for image handling, and images are stored locally in the uploads folder.
     CORS middleware is used to ensure that the API can be accessed from different origins.
+
+
+   **API ENDPOINT**
+-  http://localhost:3000/api/flowers
+ -  http://localhost:3000/api/users/signup
+ 
      
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
@@ -130,10 +135,10 @@ feature-1
 
 **website:** https://flower-delivery-website.onrender.com/api/flowers
 
-
-**http://localhost:3000/api/flowers**
-
 **watch my loom video** https://www.loom.com/share/b4f5b687e2314e308de1a2f2eeb40c14
+
+
+
 
 
 
