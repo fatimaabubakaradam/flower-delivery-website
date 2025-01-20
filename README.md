@@ -128,7 +128,7 @@ If you have any questions or feedback, feel free to contact:
 feature-1
 
 
-**website:** https://flower-delivery-website.onrender.com
+**website:** https://flower-delivery-website.onrender.com/api/flowers
 
 
 **http://localhost:3000/api/flowers**
